@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+         :root {
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-2: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--gradient-1);
+            color: white;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: pulseBackground 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseBackground {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-1);
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .project-info:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2);
+        }
+        
+        .project-info:hover::before {
+            opacity: 1;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .member-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .member-card::before,
+        .member-card::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: 0;
+        }
+        
+        .member-card::before {
+            top: -50%;
+            left: -50%;
+            transform: rotate(-45deg);
+        }
+        
+        .member-card::after {
+            bottom: -50%;
+            right: -50%;
+            transform: rotate(135deg);
+        }
+        
+        .member-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-2);
+        }
+        
+        .member-card:hover::before,
+        .member-card:hover::after {
+            opacity: 0.05;
+        }
+        
+        .member-card>* {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .member-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            display: block;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .member-card:hover img {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            color: #6366f1;
+            font-size: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+        
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+        
+        .social-links a:hover i {
+            color: white;
+        }
+        
+        .map-container {
+            height: 500px;
+            margin-top: 60px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .map-container:hover {
+            box-shadow: var(--shadow-2);
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        h3 {
+            font-size: 3em;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        
+        .role {
+            font-weight: 600;
+            color: #6366f1;
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+        
+        .expertise {
+            font-size: 1em;
+            color: #64748b;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        /* Decorative elements */
+        
+        .decoration {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            filter: blur(80px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .decoration-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -150px;
+        }
+        
+        .decoration-2 {
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: -200px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 0;
+            }
+            .header h1 {
+                font-size: 2.5em;
+            }
+            .project-info {
+                padding: 30px;
+            }
+            .member-card {
+                padding: 30px;
+            }
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            .map-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+
+    <header class="header">
+        <div class="container">
+            <h1>Agriculture disease prediction and management system in crops using drones with AI</h1>
+            <h3>Mohan Babu University</h3>
+            <p>Innovating today for a brighter tomorrow</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="project-info">
+            <center>
+                <h2>Description</h2>
+            </center>
+            <p><strong>Description:</strong> In agriculture sector we are using drones for spraying the pesticides to the entire field without any idea about disease prone areas, It results in decreasing yeild of the crop.So drones can predict the disease
+                prone areas before it occurs by using the various micro organisms present in the crop, with the help of lens. Based on some algorithms we can scan the pictures and predict the disease with a clear solution and it sprays the pesticides
+                in affected area.
+            </p>
+            <center><video class="center" width="700" height="500" controls>
+            <source src="idea.video.mp4" type="video/mp4"></center>
+            
+            
+        </video>
+        </section>
+
+        <section class="team-members">
+            <div class="member-card">
+                <img src="phani_img.jpg" alt="John Doe">
+                <h3>Dhanireddy Phanindra Reddy</h3>
+                <p class="role">Team lead</p>
+
+                <div class="social-links">
+                    <a href="https://wa.me/9989038540" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:dhanireddyphanindrareddy@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/phanindra-reddy-dhanireddy-355797313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/phanindrareddy67/Phanindrareddy-dhanireddy-" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <section>
+
+            <div class="member-card">
+                <img src="varshi_img.jpg" alt="Jane Smith">
+                <h3>Bachala Varshitha</h3>
+                <p class="role">Inventor</p>
+
+                <div class="social-links">
+                    <a href="https://wa.me/8977799530" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:bachalavarshitha@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="http://www.linkedin.com/in/varshitha-bachala-a95697303" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/varshithabachala" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <section>
+
+            <div class="member-card">
+                <img src="sailu_img.jpg" alt="Mike Johnson">
+                <h3>Rollapati Sailaja</h3>
+                <p class="role">Inventor</p>
+
+                <div class="social-links">
+                    <a href="https://wa.me/9701756649" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:sailureddy48@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/mikejohnson" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mikejohnson" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="member-card">
+                <img src="deekshi_img.jpg" alt="Sarah Chen">
+                <h3>Yellaturu Deekshitha</h3>
+                <p class="role">Inventor</p>
+
+                <div class="social-links">
+                    <a href="https://wa.me/9392442710" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:deekshiy09.28@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/y-deekshitha-a63592289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Deekshitha-0928" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section-content">
+                <center>
+                    <h2 class="section-title">Campus Location</h2>
+                </center>
+
+            </div>
+        </section>
+
+
+
+    </div>
+    <div class="grid">
+        <div class="map-responsive">
+            <center> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.857353566142!2d79.37845731482943!3d13.108242990773912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b8638775847%3A0x85a58df2137709f0!2sMohan%20Babu%20University!5e0!3m2!1sen!2sin!4v1638346844759!5m2!1sen!2sin"
+                    allowfullscreen="" loading="lazy" width="1000" height="500"></center>
+                        </iframe>
+        </div>
+
+    </div>
+</body>
+</html>
